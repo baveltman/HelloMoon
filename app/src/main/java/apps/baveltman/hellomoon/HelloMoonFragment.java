@@ -14,6 +14,13 @@ public class HelloMoonFragment extends Fragment {
 
     private Button mPlayButton;
     private Button mStopButton;
+    private AudioPlayer mPlayer;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        mPlayer = new AudioPlayer();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
@@ -21,5 +28,11 @@ public class HelloMoonFragment extends Fragment {
         mPlayButton = (Button)v.findViewById(R.id.hellomoon_playButton);
         mStopButton = (Button)v.findViewById(R.id.hellomoon_stopButton);
         return v;
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        mPlayer.stop();
     }
 }
