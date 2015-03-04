@@ -1,17 +1,29 @@
 package apps.baveltman.hellomoon;
 
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class HelloMoonActivity extends ActionBarActivity {
+public class HelloMoonActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello_moon);
+
+        //initialize and inflate activity_fragment UI
+        FragmentManager fm = getSupportFragmentManager(); //using the support library for backwards compatibility pre API 11
+        Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
+        if (fragment == null) {
+            fragment = new HelloMoonFragment();
+            fm.beginTransaction()
+                    .add(R.id.fragmentContainer, fragment)
+                    .commit();
+        }
     }
 
 
