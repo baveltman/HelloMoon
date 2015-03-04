@@ -14,12 +14,12 @@ public class HelloMoonFragment extends Fragment {
 
     private Button mPlayButton;
     private Button mStopButton;
-    private AudioPlayer mPlayer;
+    private AudioPlayer mPlayer = new AudioPlayer();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mPlayer = new AudioPlayer();
+        setRetainInstance(true);
     }
 
     @Override
