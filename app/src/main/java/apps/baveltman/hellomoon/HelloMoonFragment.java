@@ -27,6 +27,7 @@ public class HelloMoonFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_hello_moon, parent, false);
         mPlayButton = (Button)v.findViewById(R.id.hellomoon_playButton);
         mStopButton = (Button)v.findViewById(R.id.hellomoon_stopButton);
+        bindEventListeners();
         return v;
     }
 
@@ -35,4 +36,27 @@ public class HelloMoonFragment extends Fragment {
         super.onDestroy();
         mPlayer.stop();
     }
+
+    /**
+     * event listeners for actions on the
+     * ui elements in this fragment
+     */
+    private void bindEventListeners() {
+
+        mPlayButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                mPlayer.play(getActivity());
+            }
+        });
+
+        mStopButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                mPlayer.stop();
+            }
+        });
+    }
+
+
 }
